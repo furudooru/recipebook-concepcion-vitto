@@ -7,6 +7,7 @@
         Recipe Book
     </h1>
         <ul>
+        <p>Recipe by: {{object.author.name}}</p>
         {% for ingredient in object.ingredients.all %}
             <li>{{ingredient.ingredient.name}}</li>
             <ul>
