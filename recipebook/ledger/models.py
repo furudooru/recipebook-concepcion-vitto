@@ -18,7 +18,7 @@ class Recipe(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='recipe')
     created_on = models.DateTimeField(auto_now_add=True, null=False)
     updated_on = models.DateTimeField(auto_now=True)
-
+    
     def __str__(self):
         return f'{self.name}'
 
@@ -41,5 +41,8 @@ class RecipeImage(models.Model):
     image = models.ImageField(null=False, upload_to='images/')
     description = models.CharField(max_length=255)
     recipe = models.ForeignKey(Recipe, on_delete=models.SET_NULL, null=True,
-                               related_name='image')
+                               related_name='picture')
+    
+    def get_absolute_url(self):
+        return reverse('ledger:recipe', args=[self.recipe.pk])
     

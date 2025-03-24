@@ -10,6 +10,11 @@
         {{object.name}}
     </h2>
         <ul>
+        {% for image in object.picture.all %}
+            <img src='{{ image.image.url }}', alt='{{image.description}}'>
+        {% endfor %}
+        <br>
+        <a href = {% url 'ledger:update' pk=object.pk%}>Add an image</a>
         <p>Recipe by: {{object.author.name}}</p>
         {% for ingredient in object.ingredients.all %}
             <li>{{ingredient.ingredient.name}}</li>
@@ -27,6 +32,7 @@
     {% endif %}
         </ul>
     <br>
+    <a href={% url 'ledger:home'%}>Go Home</a>
     <p>Created on: {{object.created_on}}</p>
     <p>Last updated on: {{object.updated_on}}</p>
 </body>
